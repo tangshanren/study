@@ -1,0 +1,22 @@
+﻿<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, minimum-scale=0.1"><title>文字大纲</title></head><link href="res/icon.png" rel="icon"><div style="font-weight:bold">git的安装以及使用</div><ul><li>下载及安装<ul><li>登录 https://git-for-windows.github.io/  进行下载</li><li>下载下来进行安装<ul><li>
+
+一直next，直到遇到
+下面的图片这两项记得打对勾</li><li>
+安装完毕</li></ul></li></ul></li><li>使用<ul><li>
+
+
+在github上建立自己的项目（点击右边图标复制一下ssh地址）</li><li>生成 github 秘钥<ul><li>使用cd ~/.ssh 看看是否已经生成过了秘钥<ul><li>如果没有，输入ssh-keygen -t rsa -C "email"  email是你注册 github的email地址，按3个回车，即可生成秘钥</li><li>找到 .ssh/id_rsa.pub把里面的公钥复制到 github 的 setting   -> SSH and keys中的keys中（一般秘钥的存放地址在C:\Users\Administrator\.ssh）<ul><li>github 右上角 代开setting  里面 SSH and keys中的keys</li><li>
+
+回到自己电脑上，输入以下命令
+
+ ssh -T git@github.com
+
+若提示 You’ve successfully authenticated, but GitHub does not provide shell access
+
+表示已成功连上github<ul><li>git---如何解决The authenticity of host 'github.com (192.30.255.112)' can't be established.</li><li>新生成密钥的时候，git clone或者push的时候，经常会报这样的错误：<ul><li>The authenticity of host 'github.com (192.30.255.112)' can't be established.</li><li>RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.</li></ul></li><li>Google之后明白，少了一个known_hosts文件，本来密钥文件应该是三个，现在是两个，便报了这样的错误，此时选择yes回车之后，便可，同时生成了缺少了的known_hosts文件：<ul><li>Are you sure you want to continue connecting (yes/no)? //输入yes，回车
+</li></ul></li></ul></li></ul></li></ul></li><li>如果已经生成进行下一步</li></ul></li><li>配置git的配置文件<ul><li>
+
+
+git config --global user.name "你的用户名"</li><li>git config --global user.email   "你的email"</li></ul></li><li>建立一个空白的文件夹（名字随便）<ul><li>
+
+进入刚刚新建的文件夹，在空白处右键Git Bash Here  </li><li>输入 git init ，确认，此时可看到命令行的文件夹后面多了一个（master），电脑桌面文件夹里多了一个.git隐藏文件，你需要设置隐藏文件可见才可看到</li><li>把你要上传的文件夹复制过来</li><li>输入命令 git status 查看一下状态，有新的未被追踪的文件出现</li><li>输入命令 git add . ,这里的.表示全部，add全部</li><li>输入命令 git commit ，commit就是提交，确认后会跳转到默认的文本编辑器，让你写个概要，告诉别人你这一次做了什么事或者修改了哪里。<ul><li>输入（git commit -m "说明本次提交"）也可以，-m后面是说明，要用双引号括起来</li></ul></li><li>输入命令 git push ，如果没有成功，不让push，怎么办呢？输入命令 git push -u origin master ，可以push了。</li></ul></li><li>此时回到github查看一下push的结果，说明已经从本地更新到了仓库</li></ul></li></ul><body></body></html>
