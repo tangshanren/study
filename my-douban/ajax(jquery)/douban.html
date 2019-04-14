@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin:0;padding: 0}
+		#box>ol div{
+			display: inline-block;
+		}
+		#box{
+			margin: 50px 100px
+		}
+		img{
+			width: 100px
+		}
+		
+		ol{
+			height: 149px
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		请求豆瓣电影top20
+	</div>
+	<script src="jquery-3.3.0.js"></script>
+	<script>
+		$.ajax({
+			url:'https://api.douban.com/v2/movie/top250',
+			type:'get',
+			dataType:'jsonp',
+			jsonp:'callback',
+			success:function (data) {
+				var da=data.subjects;
+				//var img=$("<img src=""/>")
+				console.log(da);
+				for (var i=0; i<da.length; i++){
+					console.log(da[i].alt);
+					//console.log(da[i].images.large);
+					var alt=da[i].alt;
+					var b=da[i].images.small;
+					var title=da[i].title;
+					var dir=da[i].directors[0].name;
+					console.log(dir);
+					//$("#box").append("<img src='"+b+"'/>");
+					$("#box").append("<ol><a href='"+alt+"'><img src='"+b+"'/></a><div id='"+"p'>"+title+" 导演:"+dir+"</div></ol>");
+
+				};
+
+			}
+		})
+	</script>
+</body>
+</html>
